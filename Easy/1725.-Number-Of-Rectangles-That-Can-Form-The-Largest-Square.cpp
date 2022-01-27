@@ -23,3 +23,23 @@ public:
         return count;
     }
 };
+
+
+//Runtime: 62 ms, faster than 37.19% of C++ online submissions for Number Of Rectangles That Can Form The Largest Square.
+//Memory Usage: 18.5 MB, less than 61.82% of C++ online submissions for Number Of Rectangles That Can Form The Largest Square.
+
+class Solution {
+public:
+    int countGoodRectangles(vector<vector<int>>& rectangles) {
+        unordered_map<int, int> um;
+        int maxLen = 0;
+        for(int i = 0; i < rectangles.size(); ++i)
+        {
+            int val = min(rectangles[i][0], rectangles[i][1]);
+            ++um[val];
+            maxLen = max(val, maxLen);
+        }
+        
+        return um[maxLen];
+    }
+};
