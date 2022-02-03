@@ -1,3 +1,5 @@
+//===================BRUTE FORCE=====================//
+
 //Runtime: 4 ms, faster than 14.51% of C++ online submissions for Count of Matches in Tournament.
 //Memory Usage: 5.8 MB, less than 69.90% of C++ online submissions for Count of Matches in Tournament.
 
