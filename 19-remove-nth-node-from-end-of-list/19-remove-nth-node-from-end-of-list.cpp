@@ -17,14 +17,17 @@ public:
             return;
         }
         
-       if(n == 1 && head -> next -> next == NULL)
-       {
-           head -> next = NULL;
-            n = -1;
-           return;
-       }
+        // if nth node is last node of LL;
+        if(n == 1 && head -> next -> next == NULL) 
+        {
+             head -> next = NULL;
+             n = -1;
+             return;
+        }
         remove(head -> next, n);
         --n;
+        
+        //if nth node is in middle of LL;
         if(!n)
         {
                 ListNode *removed = head -> next;
@@ -33,10 +36,13 @@ public:
     }
     
     ListNode* removeNthFromEnd(ListNode* head, int n) {
+        //For removing starting node of LL if LL contain single node and value of n = 1
         if(n == 1 && head -> next == NULL) return NULL;
+        
+        // pointer to point starting node of LL;
         ListNode *start = head;
         
-        remove(head, n);
+        remove(head, n);// Function for removing node;
         return start;
     }
 };
