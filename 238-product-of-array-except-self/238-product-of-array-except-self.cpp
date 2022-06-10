@@ -1,35 +1,39 @@
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        vector<int> output;
-        
-        vector<int> prefix(nums.size());
-        vector<int> suffix(nums.size());
-        
-        prefix[0] = nums[0];
-        suffix[nums.size() - 1] = nums[nums.size() - 1];
-        
-        for(int i = 1; i < nums.size(); i++)
+        int zeros = 0, product = 1;
+        for(int i = 0; i < nums.size(); ++i)
         {
-            prefix[i] = prefix[i - 1] * nums[i];
+            if(nums[i] == 0) zeros++;
+            else
+            {
+                product *= nums[i];
+            }
         }
         
-        for(int i = nums.size() - 2; i > -1; --i)
+        if(zeros > 1)
         {
-            suffix[i] = suffix[i + 1] * nums[i];
+            vector<int> zoutput(nums.size(), 0);
+            return zoutput;
+        }
+        if(zeros == 1)
+        {
+            for(int i = 0; i < nums.size(); ++i)
+            {
+                if(nums[i] == 0)
+                {
+                    nums[i] = product;
+                }
+                else
+                    nums[i] = 0;
+            }
+            return nums;
         }
         
         for(int i = 0; i < nums.size(); ++i)
         {
-            int pre = 1, suff = 1;
-            if(i - 1 > -1)
-                pre = prefix[i - 1];
-            if(i + 1 < nums.size())
-                suff = suffix[i + 1];
-            
-            output.push_back(pre * suff);
+            nums[i] = product / nums[i];
         }
-        
-        return output;
+        return nums;
     }
 };
